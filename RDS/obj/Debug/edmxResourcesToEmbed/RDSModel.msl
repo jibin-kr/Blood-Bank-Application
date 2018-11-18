@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RDSModelStoreContainer" CdmEntityContainer="RDSEntities1">
+    <EntitySetMapping Name="Areas">
+      <EntityTypeMapping TypeName="RDSModel.Area">
+        <MappingFragment StoreEntitySet="Areas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BloodGroups">
+      <EntityTypeMapping TypeName="RDSModel.BloodGroup">
+        <MappingFragment StoreEntitySet="BloodGroups">
+          <ScalarProperty Name="BloodGroup1" ColumnName="BloodGroup" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donors">
+      <EntityTypeMapping TypeName="RDSModel.Donor">
+        <MappingFragment StoreEntitySet="Donors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Blood_Group" ColumnName="Blood Group" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Second_Name" ColumnName="Second Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Histories">
+      <EntityTypeMapping TypeName="RDSModel.History">
+        <MappingFragment StoreEntitySet="Histories">
+          <ScalarProperty Name="History1" ColumnName="History" />
+          <ScalarProperty Name="Member" ColumnName="Member" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="RDSModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateArea" FunctionName="RDSModel.Store.CreateArea" />
+    <FunctionImportMapping FunctionImportName="CreateDonor" FunctionName="RDSModel.Store.CreateDonor" />
+    <FunctionImportMapping FunctionImportName="DeleteArea" FunctionName="RDSModel.Store.DeleteArea" />
+    <FunctionImportMapping FunctionImportName="Deletedonor" FunctionName="RDSModel.Store.Deletedonor" />
+    <FunctionImportMapping FunctionImportName="GetallArea" FunctionName="RDSModel.Store.GetallArea">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RDSModel.GetallArea_Result">
+          <ScalarProperty Name="Si_No" ColumnName="Si No" />
+          <ScalarProperty Name="Area_Name" ColumnName="Area Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAllDonatedHistories" FunctionName="RDSModel.Store.GetAllDonatedHistories">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RDSModel.GetAllDonatedHistories_Result">
+          <ScalarProperty Name="Donor_ID" ColumnName="Donor ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Blood_Group" ColumnName="Blood Group" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Donated_Date" ColumnName="Donated Date" />
+          <ScalarProperty Name="Days_After_Donate" ColumnName="Days After Donate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="getallDonor" FunctionName="RDSModel.Store.getallDonor">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="RDSModel.getallDonor_Result">
+          <ScalarProperty Name="Donor_ID" ColumnName="Donor ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Blood_group" ColumnName="Blood group" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Donor_Status" ColumnName="Donor Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SetDonatedhistory" FunctionName="RDSModel.Store.SetDonatedhistory" />
+  </EntityContainerMapping>
+</Mapping>

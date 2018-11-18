@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RDSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Areas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BloodGroups">
+    <Key>
+      <PropertyRef Name="BloodGroup" />
+    </Key>
+    <Property Name="BloodGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Donors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Blood Group" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nchar" MaxLength="500" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Area" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="CreateDate" Type="varchar" MaxLength="20" />
+    <Property Name="Second Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Histories">
+    <Key>
+      <PropertyRef Name="History" />
+    </Key>
+    <Property Name="History" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Member" Type="int" Nullable="false" />
+    <Property Name="Date" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <Function Name="CreateArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Area" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="CreateDonor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="SecondName" Type="varchar" Mode="In" />
+    <Parameter Name="Age" Type="int" Mode="In" />
+    <Parameter Name="Gender" Type="nvarchar" Mode="In" />
+    <Parameter Name="BloodGroup" Type="int" Mode="In" />
+    <Parameter Name="Address" Type="nchar" Mode="In" />
+    <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+    <Parameter Name="Area" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DeleteArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Deletedonor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetallArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetAllDonatedHistories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getallDonor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="IsEligible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="member" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SetDonatedhistory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Member" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="RDSModelStoreContainer">
+    <EntitySet Name="Areas" EntityType="Self.Areas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BloodGroups" EntityType="Self.BloodGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Donors" EntityType="Self.Donors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Histories" EntityType="Self.Histories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

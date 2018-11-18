@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RDSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BloodGroup">
+    <Key>
+      <PropertyRef Name="BloodGroup1" />
+    </Key>
+    <Property Name="BloodGroup1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Donor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Blood_Group" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Area" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="CreateDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Second_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="History1" />
+    </Key>
+    <Property Name="History1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Member" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="RDSEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Areas" EntityType="Self.Area" />
+    <EntitySet Name="BloodGroups" EntityType="Self.BloodGroup" />
+    <EntitySet Name="Donors" EntityType="Self.Donor" />
+    <EntitySet Name="Histories" EntityType="Self.History" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <FunctionImport Name="CreateArea">
+      <Parameter Name="Area" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CreateDonor">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="SecondName" Mode="In" Type="String" />
+      <Parameter Name="Age" Mode="In" Type="Int32" />
+      <Parameter Name="Gender" Mode="In" Type="String" />
+      <Parameter Name="BloodGroup" Mode="In" Type="Int32" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="Phone" Mode="In" Type="String" />
+      <Parameter Name="Area" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteArea">
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Deletedonor">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetallArea" ReturnType="Collection(RDSModel.GetallArea_Result)" />
+    <FunctionImport Name="GetAllDonatedHistories" ReturnType="Collection(RDSModel.GetAllDonatedHistories_Result)" />
+    <FunctionImport Name="getallDonor" ReturnType="Collection(RDSModel.getallDonor_Result)" />
+    <FunctionImport Name="SetDonatedhistory">
+      <Parameter Name="Member" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GetallArea_Result">
+    <Property Type="Int64" Name="Si_No" Nullable="true" />
+    <Property Type="String" Name="Area_Name" Nullable="false" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="GetAllDonatedHistories_Result">
+    <Property Type="Int32" Name="Donor_ID" Nullable="true" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Blood_Group" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Phone" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Area" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Donated_Date" Nullable="false" MaxLength="20" />
+    <Property Type="Int32" Name="Days_After_Donate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="getallDonor_Result">
+    <Property Type="Int32" Name="Donor_ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="201" />
+    <Property Type="String" Name="Blood_group" Nullable="true" MaxLength="15" />
+    <Property Type="String" Name="Phone" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Area" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="10" />
+    <Property Type="Int32" Name="Age" Nullable="true" />
+    <Property Type="String" Name="Donor_Status" Nullable="true" MaxLength="20" />
+  </ComplexType>
+</Schema>
